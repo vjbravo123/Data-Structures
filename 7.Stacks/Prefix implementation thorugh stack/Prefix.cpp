@@ -1,21 +1,21 @@
 #include<iostream>
+#include<string>
 #include<stack>
 #include<math.h>
 using namespace std;
 
 
-int PrefixEvaluation( string s){
+int PrefixEvaluation(string s){
     stack<int> st;
-    
-    for (int i = s.length()-1 ; i >= 0 ; i--)
+    for (int i =s.length()-1; i >=0; i--)
     {
         if(s[i]>='0' && s[i]<='9'){
-            st.push(s[i] - '0');//For storing integer value in stack
+            st.push(s[i] - '0');
         }
         else{
-            int op1 = st.top();
+            int op1=st.top();
             st.pop();
-            int op2 = st.top();
+            int op2=st.top();
             st.pop();
 
             switch (s[i])
@@ -35,17 +35,23 @@ int PrefixEvaluation( string s){
             case '^':
                 st.push(pow(op1,op2));
                 break;
+            
             }
-
         }
     }
+   return st.top();
 
-    return st.top();
-    
 }
-
-
 int main(){
     cout<<PrefixEvaluation("-+7*45+20")<<endl;
     return 0;
 }
+
+
+
+
+
+
+
+
+
